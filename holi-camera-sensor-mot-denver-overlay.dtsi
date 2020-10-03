@@ -354,6 +354,20 @@
 		status = "ok";
 	};
 
+	eeprom_front: qcom,eeprom@1 {
+		cell-index = <1>;
+		reg = <0x1>;
+		compatible = "qcom,eeprom";
+		cam_vio-supply = <&cam_ldo7>;
+		regulator-names = "cam_vio";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000>;
+		rgltr-max-voltage = <1800000>;
+		rgltr-load-current = <120000>;
+		cci-master = <0>;
+		status = "ok";
+	};
+
 	qcom,cam-sensor@1 {
 		cell-index = <1>;
 		compatible = "qcom,cam-sensor";
@@ -362,7 +376,7 @@
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <0>;
 		//led-flash-src = <&led_flash_front>;
-		//eeprom-src = <&eeprom_front>;
+		eeprom-src = <&eeprom_front>;
 		cam_vio-supply = <&cam_ldo7>;
 		cam_vana-supply = <&cam_ldo4>;
 		cam_vdig-supply = <&cam_ldo2>;
@@ -488,9 +502,9 @@
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
 		pinctrl-0 = <&cam_sensor_mclk1_active
-				&cam_sensor_macro_reset_active>;
+				&cam_sensor_wide_reset_active>;
 		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				&cam_sensor_macro_reset_suspend>;
+				&cam_sensor_wide_reset_suspend>;
 		gpios = <&tlmm 30 0>,
 			<&tlmm 36 0>;
 		gpio-reset = <1>;
@@ -523,9 +537,9 @@
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
 		pinctrl-0 = <&cam_sensor_mclk1_active
-				&cam_sensor_macro_reset_active>;
+				&cam_sensor_wide_reset_active>;
 		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				&cam_sensor_macro_reset_suspend>;
+				&cam_sensor_wide_reset_suspend>;
 		gpios = <&tlmm 30 0>,
 			<&tlmm 36 0>;
 		gpio-reset = <1>;
