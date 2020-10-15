@@ -252,7 +252,7 @@
 		compatible = "qcom,camera-flash";
 		flash-source = <&pm6150l_flash0>;
 		torch-source = <&pm6150l_torch0>;
-		switch-source = <&pm6150l_switch2>;
+		switch-source = <&pm6150l_switch0>;
 		status = "ok";
 	};
 
@@ -261,7 +261,7 @@
 		compatible = "qcom,camera-flash";
 		flash-source = <&pm6150l_flash0>;
 		torch-source = <&pm6150l_torch0>;
-		switch-source = <&pm6150l_switch2>;
+		switch-source = <&pm6150l_switch0>;
 		status = "ok";
 	};
 
@@ -270,7 +270,7 @@
 		compatible = "qcom,camera-flash";
 		flash-source = <&pm6150l_flash0>;
 		torch-source = <&pm6150l_torch0>;
-		switch-source = <&pm6150l_switch2>;
+		switch-source = <&pm6150l_switch0>;
 		status = "ok";
 	};
 
@@ -279,7 +279,7 @@
 		compatible = "qcom,camera-flash";
 		flash-source = <&pm6150l_flash1>;
 		torch-source = <&pm6150l_torch1>;
-		switch-source = <&pm6150l_switch2>;
+		switch-source = <&pm6150l_switch1>;
 		status = "ok";
 	};
 };
