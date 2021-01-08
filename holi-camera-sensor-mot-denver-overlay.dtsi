@@ -244,6 +244,12 @@
 &soc {
 	qcom,cam-res-mgr {
 		compatible = "qcom,cam-res-mgr";
+		gpios-shared = <385>; /* shared MCLK1 30+355 */
+		gpios-shared-pinctrl = <385>;
+		shared-pctrl-gpio-names = "mclk1";
+		pinctrl-names = "mclk1_active", "mclk1_suspend";
+		pinctrl-0 = <&cam_sensor_mclk1_active>;
+		pinctrl-1 = <&cam_sensor_mclk1_suspend>;
 		status = "ok";
 	};
 
@@ -428,10 +434,8 @@
 		rgltr-load-current = <120000 80000 0>;
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
-		pinctrl-0 = <&cam_sensor_mclk1_active
-				&cam_sensor_depth_reset_active>;
-		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				&cam_sensor_depth_reset_suspend>;
+		pinctrl-0 = <&cam_sensor_depth_reset_active>;
+		pinctrl-1 = <&cam_sensor_depth_reset_suspend>;
 		gpios = <&tlmm 30 0>,
 			<&tlmm 49 0>;
 		gpio-reset = <1>;
@@ -461,10 +465,8 @@
 		rgltr-load-current = <120000 80000 0>;
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
-		pinctrl-0 = <&cam_sensor_mclk1_active
-				&cam_sensor_depth_reset_active>;
-		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				&cam_sensor_depth_reset_suspend>;
+		pinctrl-0 = <&cam_sensor_depth_reset_active>;
+		pinctrl-1 = <&cam_sensor_depth_reset_suspend>;
 		gpios = <&tlmm 30 0>,
 			<&tlmm 49 0>;
 		gpio-reset = <1>;
@@ -501,10 +503,8 @@
 		rgltr-load-current = <120000 80000 1200000 0>;
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
-		pinctrl-0 = <&cam_sensor_mclk1_active
-				&cam_sensor_wide_reset_active>;
-		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				&cam_sensor_wide_reset_suspend>;
+		pinctrl-0 = <&cam_sensor_wide_reset_active>;
+		pinctrl-1 = <&cam_sensor_wide_reset_suspend>;
 		gpios = <&tlmm 30 0>,
 			<&tlmm 36 0>;
 		gpio-reset = <1>;
@@ -536,10 +536,8 @@
 		rgltr-load-current = <120000 80000 1200000 0>;
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
-		pinctrl-0 = <&cam_sensor_mclk1_active
-				&cam_sensor_wide_reset_active>;
-		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				&cam_sensor_wide_reset_suspend>;
+		pinctrl-0 = <&cam_sensor_wide_reset_active>;
+		pinctrl-1 = <&cam_sensor_wide_reset_suspend>;
 		gpios = <&tlmm 30 0>,
 			<&tlmm 36 0>;
 		gpio-reset = <1>;
