@@ -246,34 +246,6 @@
 		compatible = "qcom,cam-res-mgr";
 		status = "ok";
 	};
-
-	led_flash_main: qcom,camera-flash@0 {
-		cell-index = <0>;
-		compatible = "qcom,camera-flash";
-		flash-source = <&pm6150l_flash0>;
-		torch-source = <&pm6150l_torch0>;
-		switch-source = <&pm6150l_switch0>;
-		status = "ok";
-	};
-
-	led_flash_wide: qcom,camera-flash@1 {
-		cell-index = <1>;
-		compatible = "qcom,camera-flash";
-		flash-source = <&pm6150l_flash0>;
-		torch-source = <&pm6150l_torch0>;
-		switch-source = <&pm6150l_switch0>;
-		status = "ok";
-	};
-
-	led_flash_macro: qcom,camera-flash@2 {
-		cell-index = <2>;
-		compatible = "qcom,camera-flash";
-		flash-source = <&pm6150l_flash0>;
-		torch-source = <&pm6150l_torch0>;
-		switch-source = <&pm6150l_switch0>;
-		status = "ok";
-	};
-
 };
 
 &cam_cci0 {
@@ -291,6 +263,21 @@
 		cci-master = <1>;
 		status = "ok";
 	};
+
+	led_flash_rear: qcom,camera-flash@0 {
+		cell-index = <0>;
+		reg = <0x0>;
+		compatible = "qcom,camera-flash";
+		cam_vio-supply = <&cam_pmic1_ldo7_vddio>;
+		regulator-names = "cam_vio";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000>;
+		rgltr-max-voltage = <1800000>;
+		rgltr-load-current = <100000>;
+		cci-master = <0>;
+		status = "ok";
+	};
+
 	qcom,cam-sensor0 {
 		cell-index = <0>;
 		compatible = "qcom,cam-sensor";
@@ -299,7 +286,7 @@
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
 		actuator-src = <&actuator_main>;
-		led-flash-src = <&led_flash_main>;
+		led-flash-src = <&led_flash_rear>;
 		cam_vio-supply = <&cam_pmic1_ldo7_vddio>;
 		cam_vana-supply = <&cam_pmic1_ldo6_vddois>;
 		cam_vdig-supply = <&cam_pmic2_ldo2_dvdd2>;
@@ -379,7 +366,6 @@
 		sensor-position-roll = <90>;
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
-		led-flash-src = <&led_flash_macro>;
 		cam_vio-supply = <&cam_pmic1_ldo7_vddio>;
 		cam_vana-supply = <&cam_pmic1_ldo4_avdd2>;
 		cam_clk-supply = <&gcc_camss_top_gdsc>;
@@ -429,7 +415,6 @@
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
 		actuator-src = <&actuator_wide>;
-		led-flash-src = <&led_flash_wide>;
 		cam_vio-supply = <&cam_pmic1_ldo7_vddio>;
 		cam_vana-supply = <&cam_pmic1_ldo4_avdd2>;
 		cam_vdig-supply = <&cam_pmic1_ldo2_dvdd2>;
