@@ -249,17 +249,15 @@
 };
 
 &cam_cci0 {
-	// ROW/PRC: OV64B(OIS); JP: S5KGN1
-	actuator_main: qcom,actuator0 {
+	actuator_main: qcom,actuator@0 {
 		cell-index = <0>;
 		compatible = "qcom,actuator";
-		cam_vaf-supply = <&cam_pmic2_ldo4_avdd2>;//For ROW/PRC rear main AF
-		cam_v_custom1-supply = <&cam_pmic1_ldo5_vddaf>;//For JP rear main AF
-		regulator-names = "cam_vaf", "cam_v_custom1";
+		cam_vaf-supply = <&cam_pmic2_ldo4_avdd2>;
+		regulator-names = "cam_vaf";
 		rgltr-cntrl-support;
-		rgltr-min-voltage = <2800000 2800000>;
-		rgltr-max-voltage = <2800000 2800000>;
-		rgltr-load-current = <100000 100000>;
+		rgltr-min-voltage = <2800000>;
+		rgltr-max-voltage = <2800000>;
+		rgltr-load-current = <100000>;
 		cci-master = <1>;
 		status = "ok";
 	};
@@ -278,7 +276,21 @@
 		status = "ok";
 	};
 
-	qcom,cam-sensor0 {
+       eeprom_main: qcom,eeprom@0 {
+                cell-index = <0>;
+                reg = <0x0>;
+                compatible = "qcom,eeprom";
+                cam_vio-supply = <&cam_pmic1_ldo7_vddio>;
+                regulator-names = "cam_vio";
+                rgltr-cntrl-support;
+                rgltr-min-voltage = <1800000>;
+                rgltr-max-voltage = <1800000>;
+                rgltr-load-current = <120000>;
+                cci-master = <1>;
+                status = "ok";
+        };
+
+	qcom,cam-sensor@0 {
 		cell-index = <0>;
 		compatible = "qcom,cam-sensor";
 		csiphy-sd-index = <0>;
@@ -287,6 +299,7 @@
 		sensor-position-yaw = <180>;
 		actuator-src = <&actuator_main>;
 		led-flash-src = <&led_flash_rear>;
+		eeprom-src = <&eeprom_main>;
 		cam_vio-supply = <&cam_pmic1_ldo7_vddio>;
 		cam_vana-supply = <&cam_pmic1_ldo6_vddois>;
 		cam_vdig-supply = <&cam_pmic2_ldo2_dvdd2>;
@@ -359,7 +372,7 @@
 
 &cam_cci1 {
 	// ROW/PRC: macro OV02B10; JP: depth OV02B1B
-	qcom,cam-sensor2 {
+	qcom,cam-sensor@2 {
 		cell-index = <2>;
 		compatible = "qcom,cam-sensor";
 		csiphy-sd-index = <2>;
@@ -394,27 +407,14 @@
 		clock-cntl-level = "turbo";
 		clock-rates = <24000000>;
 	};
-	// ROW/PRC: S5K4H7(FF); JP: S5K4H7(AF)
-	actuator_wide: qcom,actuator3 {
-		cell-index = <3>;
-		compatible = "qcom,actuator";
-		cam_vaf-supply = <&cam_pmic2_ldo4_avdd2>;//For JP wide AF
-		regulator-names = "cam_vaf";
-		rgltr-cntrl-support;
-		rgltr-min-voltage = <2800000>;
-		rgltr-max-voltage = <2800000>;
-		rgltr-load-current = <100000>;
-		cci-master = <1>;
-		status = "ok";
-	};
-	qcom,cam-sensor3 {
+
+	qcom,cam-sensor@3 {
 		cell-index = <3>;
 		compatible = "qcom,cam-sensor";
 		csiphy-sd-index = <1>;
 		sensor-position-roll = <90>;
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
-		actuator-src = <&actuator_wide>;
 		cam_vio-supply = <&cam_pmic1_ldo7_vddio>;
 		cam_vana-supply = <&cam_pmic1_ldo4_avdd2>;
 		cam_vdig-supply = <&cam_pmic1_ldo2_dvdd2>;
