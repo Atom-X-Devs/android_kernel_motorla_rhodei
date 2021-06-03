@@ -371,14 +371,47 @@
 };
 
 &cam_cci1 {
-	// ROW/PRC: macro OV02B10; JP: depth OV02B1B
-	qcom,cam-sensor@2 {
+	// ROW/PRC: macro OV02B10; JP: depth OV02B1B;5G: macro GC02M1
+	eeprom_macro: qcom,eeprom@2 {
+                cell-index = <2>;
+                reg = <0x2>;
+                compatible = "qcom,eeprom";
+		cam_vio-supply = <&cam_pmic1_ldo7_vddio>;
+		cam_vana-supply = <&cam_pmic1_ldo4_avdd2>;
+		cam_clk-supply = <&gcc_camss_top_gdsc>;
+		regulator-names = "cam_vio", "cam_vana", "cam_clk";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 2800000 0>;
+		rgltr-max-voltage = <1800000 2800000 0>;
+		rgltr-load-current = <120000 80000 0>;
+		gpio-no-mux = <0>;
+		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-0 = <&cam_sensor_mclk1_active
+				&cam_sensor_macro_depth_reset_active>;
+		pinctrl-1 = <&cam_sensor_mclk1_suspend
+				&cam_sensor_macro_depth_reset_suspend>;
+		gpios = <&tlmm 30 0>,
+			<&tlmm 49 0>;
+		gpio-reset = <1>;
+		gpio-req-tbl-num = <0 1>;
+		gpio-req-tbl-flags = <1 0>;
+		gpio-req-tbl-label = "CAMIF_MCLK1",
+					"CAM_RD_RST";
+		cci-master = <0>;
+		status = "ok";
+		clocks = <&gcc GCC_CAMSS_MCLK1_CLK>;
+		clock-names = "cam_clk";
+		clock-cntl-level = "turbo";
+		clock-rates = <24000000>;
+	};
+	qcom,cam-sensor2 {
 		cell-index = <2>;
 		compatible = "qcom,cam-sensor";
 		csiphy-sd-index = <2>;
 		sensor-position-roll = <90>;
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
+                eeprom-src = <&eeprom_macro>;
 		cam_vio-supply = <&cam_pmic1_ldo7_vddio>;
 		cam_vana-supply = <&cam_pmic1_ldo4_avdd2>;
 		cam_clk-supply = <&gcc_camss_top_gdsc>;
