@@ -311,7 +311,7 @@
 		sensor-position-roll = <90>;
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
-		/*actuator-src = <&actuator_main>;
+		actuator-src = <&actuator_main>;
 		led-flash-src = <&led_flash_main>;
 		eeprom-src = <&eeprom_main>;
 		cam_vio-supply = <&cam_ldo7>;
@@ -329,7 +329,7 @@
 		pinctrl-0 = <&cam_sensor_mclk0_active
 				&cam_sensor_main_reset_active>;
 		pinctrl-1 = <&cam_sensor_mclk0_suspend
-				&cam_sensor_main_reset_suspend>;*/
+				&cam_sensor_main_reset_suspend>;
 		gpios = <&tlmm 29 0>,
 			<&tlmm 35 0>;
 		gpio-reset = <1>;
@@ -387,7 +387,7 @@
 		sensor-position-roll = <90>;
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
-		/*//led-flash-src = <&led_flash_wide>;
+		//led-flash-src = <&led_flash_wide>;
 		//eeprom-src = <&eeprom_wide>;
 		cam_vio-supply = <&cam_ldo7>;
 		cam_vana-supply = <&cam_ldo6>;
@@ -401,23 +401,23 @@
 		rgltr-load-current = <120000 80000 0>;
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
-		pinctrl-0 = <&cam_sensor_mclk1_active
+		pinctrl-0 = <&cam_sensor_mclk2_active
 				&cam_sensor_wide_reset_active>;
-		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				&cam_sensor_wide_reset_suspend>;*/
-		gpios = <&tlmm 30 0>,
+		pinctrl-1 = <&cam_sensor_mclk2_suspend
+				&cam_sensor_wide_reset_suspend>;
+		gpios = <&tlmm 31 0>,
 			<&tlmm 49 0>,
 			<&tlmm 12 0>;
 		gpio-reset = <1>;
 		gpio-custom1 = <2>;
 		gpio-req-tbl-num = <0 1 2>;
 		gpio-req-tbl-flags = <1 0 0>;
-		gpio-req-tbl-label = "CAMIF_MCLK1",
+		gpio-req-tbl-label = "CAMIF_MCLK2",
 					"CAM_RESET2",
 					"CAM_VDIG";
 		cci-master = <1>;
 		status = "ok";
-		clocks = <&gcc GCC_CAMSS_MCLK1_CLK>;
+		clocks = <&gcc GCC_CAMSS_MCLK2_CLK>;
 		clock-names = "cam_clk";
 		clock-cntl-level = "turbo";
 		clock-rates = <24000000>;
@@ -596,8 +596,6 @@
 		//led-flash-src = <&led_flash_macro>;
 		//eeprom-src = <&eeprom_macro>;
 		cam_vio-supply = <&cam_ldo7>;
-		//cam_vana-supply = <&cam_ldo6>;
-		//cam_vdig-supply = <&cam_ldo2>;
 		cam_clk-supply = <&gcc_camss_top_gdsc>;
 		regulator-names = "cam_vio", "cam_clk";
 		rgltr-cntrl-support;
