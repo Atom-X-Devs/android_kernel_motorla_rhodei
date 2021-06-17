@@ -593,7 +593,7 @@
 		sensor-position-roll = <90>;
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
-		//led-flash-src = <&led_flash_macro>;
+		led-flash-src = <&led_flash_macro>;
 		//eeprom-src = <&eeprom_macro>;
 		cam_vio-supply = <&cam_ldo7>;
 		cam_vana-supply = <&cam_ldo6>;
