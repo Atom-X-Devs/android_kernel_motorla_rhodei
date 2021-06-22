@@ -278,7 +278,7 @@
 	actuator_main: qcom,actuator@0 {
 		cell-index = <0>;
 		compatible = "qcom,actuator";
-		cam_vaf-supply = <&cam_pmic2_ldo4_avdd2>;
+		cam_vaf-supply = <&cam_pmic1_ldo5_vddaf>;
 		regulator-names = "cam_vaf";
 		rgltr-cntrl-support;
 		rgltr-min-voltage = <2800000>;
