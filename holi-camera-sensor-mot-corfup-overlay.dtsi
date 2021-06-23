@@ -272,6 +272,7 @@
 		rgltr-min-voltage = <1800000>;
 		rgltr-max-voltage = <1800000>;
 		rgltr-load-current = <100000>;
+		flash-type = <1>;
 		cci-master = <0>;
 		status = "ok";
 	};
