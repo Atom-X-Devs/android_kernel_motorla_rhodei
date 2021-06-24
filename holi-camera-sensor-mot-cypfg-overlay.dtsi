@@ -159,33 +159,6 @@
 		};
 	};
 
-	cam_sensor_depth_reset_active: cam_sensor_depth_reset_active {
-		mux {
-			pins = "gpio36";
-			function = "gpio";
-		};
-
-		config {
-			pins = "gpio36";
-			bias-disable; /* No PULL */
-			drive-strength = <2>; /* 2 MA */
-		};
-	};
-
-	cam_sensor_depth_reset_suspend: cam_sensor_depth_reset_suspend {
-		mux {
-			pins = "gpio36";
-			function = "gpio";
-		};
-
-		config {
-			pins = "gpio36";
-			bias-pull-down; /* PULL DOWN */
-			drive-strength = <2>; /* 2 MA */
-			output-low;
-		};
-	};
-
 	cam_sensor_wide_reset_active: cam_sensor_wide_reset_active {
 		mux {
 			pins = "gpio49";
@@ -424,79 +397,6 @@
 		clock-cntl-level = "turbo";
 		clock-rates = <24000000>;
 	};
-
-	qcom,cam-sensor4 {
-		cell-index = <4>;
-		compatible = "qcom,cam-sensor";
-		csiphy-sd-index = <1>;
-		sensor-position-roll = <90>;
-		sensor-position-pitch = <0>;
-		sensor-position-yaw = <180>;
-		//eeprom-src = <&eeprom_depth>;
-		cam_vio-supply = <&cam_ldo7>;
-		//cam_vana-supply = <&cam_ldo4>;
-		cam_clk-supply = <&gcc_camss_top_gdsc>;
-		regulator-names = "cam_vio", "cam_clk";
-		rgltr-cntrl-support;
-		rgltr-min-voltage = <1800000 0>;
-		rgltr-max-voltage = <1800000 0>;
-		rgltr-load-current = <120000 0>;
-		gpio-no-mux = <0>;
-		pinctrl-names = "cam_default", "cam_suspend";
-		pinctrl-0 = <&cam_sensor_mclk1_active
-				&cam_sensor_depth_reset_active>;
-		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				&cam_sensor_depth_reset_suspend>;
-		gpios = <&tlmm 30 0>,
-			<&tlmm 36 0>,
-			<&tlmm 51 0>;
-		gpio-reset = <1>;
-		gpio-custom1 = <2>;
-		gpio-req-tbl-num = <0 1 2>;
-		gpio-req-tbl-flags = <1 0 0>;
-		gpio-req-tbl-label = "CAMIF_MCLK1",
-					"CAM_RESET4",
-					"CAM_VANA";
-		cci-master = <1>;
-		status = "ok";
-		clocks = <&gcc GCC_CAMSS_MCLK1_CLK>;
-		clock-names = "cam_clk";
-		clock-cntl-level = "turbo";
-		clock-rates = <24000000>;
-	};
-
-	eeprom_depth: qcom,eeprom4 {
-		cell-index = <4>;
-                reg = <0x4>;
-		compatible = "qcom,eeprom";
-		/*cam_vio-supply = <&cam_ldo7>;
-		cam_vana-supply = <&cam_ldo4>;
-		cam_clk-supply = <&gcc_camss_top_gdsc>;
-		regulator-names = "cam_vio", "cam_vana", "cam_clk";
-		rgltr-cntrl-support;
-		rgltr-min-voltage = <1800000 2800000 0>;
-		rgltr-max-voltage = <1800000 2800000 0>;
-		rgltr-load-current = <120000 80000 0>;
-		gpio-no-mux = <0>;
-		pinctrl-names = "cam_default", "cam_suspend";
-		pinctrl-0 = <&cam_sensor_mclk1_active
-				&cam_sensor_depth_reset_active>;
-		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				&cam_sensor_depth_reset_suspend>;*/
-		gpios = <&tlmm 30 0>,
-			<&tlmm 49 0>;
-		gpio-reset = <1>;
-		gpio-req-tbl-num = <0 1>;
-		gpio-req-tbl-flags = <1 0>;
-		gpio-req-tbl-label = "CAMIF_MCLK1",
-					"CAM_RESET2";
-		cci-master = <0>;
-		status = "ok";
-		clocks = <&gcc GCC_CAMSS_MCLK1_CLK>;
-		clock-names = "cam_clk";
-		clock-cntl-level = "turbo";
-		clock-rates = <24000000>;
-	};
 };
 
 &cam_cci1 {
@@ -529,8 +429,8 @@
 		regulator-names = "cam_vio", "cam_vana", "cam_vdig",
 			"cam_clk";
 		rgltr-cntrl-support;
-		rgltr-min-voltage = <1800000 2800000 1150000 0>;
-		rgltr-max-voltage = <1800000 2800000 1150000 0>;
+		rgltr-min-voltage = <1800000 2800000 1050000 0>;
+		rgltr-max-voltage = <1800000 2800000 1050000 0>;
 		rgltr-load-current = <120000 80000 1200000 0>;
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
