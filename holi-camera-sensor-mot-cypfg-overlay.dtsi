@@ -234,6 +234,11 @@
 		status = "ok";
 	};
 
+	mot,cam-actuator {
+		compatible = "mot,actuator";
+		status = "ok";
+	};
+
 	led_flash_main: qcom,camera-flash@0 {
 		cell-index = <0>;
 		compatible = "qcom,camera-flash";
@@ -288,6 +293,7 @@
 		rgltr-max-voltage = <2800000>;
 		rgltr-load-current = <100000>;
 		status = "ok";
+		multi-user-support;
 	};
 
 	eeprom_main: qcom,eeprom0 {
@@ -319,12 +325,13 @@
 		cam_vana-supply = <&cam_ldo4>;
 		cam_vdig-supply = <&cam_ldo2>;
 		cam_clk-supply = <&gcc_camss_top_gdsc>;
+		cam_vaf-supply = <&cam_ldo5>;
 		regulator-names = "cam_vio", "cam_vana", "cam_vdig",
-			"cam_clk";
+			"cam_clk", "cam_vaf";
 		rgltr-cntrl-support;
-		rgltr-min-voltage = <1800000 2800000 1050000 0>;
-		rgltr-max-voltage = <1800000 2800000 1050000 0>;
-		rgltr-load-current = <120000 80000 1200000 0>;
+		rgltr-min-voltage = <1800000 2800000 1050000 0 2800000>;
+		rgltr-max-voltage = <1800000 2800000 1050000 0 2800000>;
+		rgltr-load-current = <120000 80000 1200000 0 100000>;
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
 		pinctrl-0 = <&cam_sensor_mclk0_active
