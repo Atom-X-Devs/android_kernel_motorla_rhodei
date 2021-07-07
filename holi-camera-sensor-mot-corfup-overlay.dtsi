@@ -270,7 +270,6 @@
 		gpio = <&tlmm 38 0>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&cam_macro_avdd_en_default>;
-		vin-supply = <&BOB>;
 	};
 	led_flash_rear: qcom,camera-flash@0 {
 		cell-index = <0>;
