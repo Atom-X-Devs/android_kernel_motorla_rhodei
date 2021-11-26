@@ -159,6 +159,18 @@
 			output-low;
 		};
 	};
+	cam_ois_ldo_en_default: cam_ois_ldo_en_default {
+		mux {
+			pins = "gpio86";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio86";
+			bias-pull-up; /* NO PULL */
+			drive-strength = <2>; /* 2 MA */
+			output-high;
+		};
+	};
 };
 
 &soc {
@@ -166,9 +178,40 @@
 		compatible = "qcom,cam-res-mgr";
 		status = "ok";
 	};
+    mot,cam-actuator {
+        compatible = "mot,actuator";
+        status = "ok";
+    };
+	cam_ois_ldo: gpio-regulator@0{
+		compatible = "regulator-fixed";
+		reg = <0x00 0x00>;
+		regulator-name = "cam_ois_ldo";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		regulator-enable-ramp-delay = <233>;
+		enable-active-high;
+		gpio = <&tlmm 86 0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&cam_ois_ldo_en_default>;
+	};
 };
 
 &cam_cci0 {
+	actuator_main: qcom,actuator@0 {
+		cell-index = <0>;
+		compatible = "qcom,actuator";
+		cam_vio-supply = <&cam_pmic_ldo7>;
+		cam_vaf-supply = <&cam_pmic_ldo3>;
+		cam_v_custom1-supply = <&cam_ois_ldo>;
+		regulator-names = "cam_vio", "cam_vaf", "cam_v_custom1";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 2800000 2800000>;
+		rgltr-max-voltage = <1800000 2800000 2800000>;
+		rgltr-load-current = <120000 100000 100000>;
+		cci-master = <1>;
+		status = "ok";
+	};
+
 	sensor_main: qcom,cam-sensor@0 {
 		cell-index = <0>;
 		compatible = "qcom,cam-sensor";
@@ -176,6 +219,7 @@
 		sensor-position-roll = <90>;
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
+		actuator-src = <&actuator_main>;
 		cam_vio-supply = <&cam_pmic_ldo7>;
 		cam_vana-supply = <&cam_pmic_ldo4>;
 		cam_vdig-supply = <&cam_pmic_ldo1>;
