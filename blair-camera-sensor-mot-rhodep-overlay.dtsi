@@ -287,6 +287,20 @@
 		status = "ok";
 	};
 
+	eeprom_main: qcom,eeprom@0 {
+		cell-index = <0>;
+		reg = <0x0>;
+		compatible = "qcom,eeprom";
+		cam_vio-supply = <&cam_pmic_ldo7>;
+		regulator-names = "cam_vio";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000>;
+		rgltr-max-voltage = <1800000>;
+		rgltr-load-current = <120000>;
+		cci-master = <1>;
+		status = "ok";
+	};
+
 	sensor_main: qcom,cam-sensor@0 {
 		cell-index = <0>;
 		compatible = "qcom,cam-sensor";
@@ -295,6 +309,7 @@
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
 		actuator-src = <&actuator_main>;
+		eeprom-src = <&eeprom_main>;
 		ois-src = <&ois_main>;
 		cam_vio-supply = <&cam_pmic_ldo7>;
 		cam_vana-supply = <&cam_pmic_ldo4>;
