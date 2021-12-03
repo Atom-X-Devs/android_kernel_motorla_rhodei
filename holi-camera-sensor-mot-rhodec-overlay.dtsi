@@ -241,6 +241,20 @@
 			output-high;
 		};
 	};
+
+	cam_macro_avdd_en_default: cam_macro_avdd_en_default {
+		mux {
+			pins = "gpio45";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio45";
+			bias-pull-up; /* PULL UP */
+			drive-strength = <2>; /* 2 MA */
+			output-high;
+		};
+	};
 };
 
 &soc {
@@ -276,6 +290,21 @@
 		pinctrl-0 = <&cam_wide_avdd_en_default>;
 		/*vin-supply = <&BOB>;*/
 	};
+
+	cam_macro_avdd: gpio-regulator@1{
+		compatible = "regulator-fixed";
+		reg = <0x01 0x01>;
+		regulator-name = "cam_macro_avdd";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		regulator-enable-ramp-delay = <233>;
+		enable-active-high;
+		gpio = <&tlmm 45 0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&cam_macro_avdd_en_default>;
+		/*vin-supply = <&BOB>;*/
+	};
+
 };
 
 &cam_cci0 {
@@ -283,6 +312,41 @@
 };
 
 &cam_cci1 {
+	qcom,cam-sensor2 {
+		cell-index = <2>;
+		compatible = "qcom,cam-sensor";
+		csiphy-sd-index = <2>;
+		sensor-position-roll = <90>;
+		sensor-position-pitch = <0>;
+		sensor-position-yaw = <180>;
+		cam_vio-supply = <&L9A>;
+		cam_vana-supply = <&cam_macro_avdd>;
+		cam_clk-supply = <&gcc_camss_top_gdsc>;
+		regulator-names = "cam_vio","cam_vana", "cam_clk";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 2800000 0>;
+		rgltr-max-voltage = <1800000 2800000 0>;
+		rgltr-load-current = <120000 120000 0>;
+		gpio-no-mux = <0>;
+		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-0 = <&cam_sensor_mclk1_active
+				&cam_sensor_macro_reset_active>;
+		pinctrl-1 = <&cam_sensor_mclk1_suspend
+				&cam_sensor_macro_reset_suspend>;
+		gpios = <&tlmm 30 0>,
+			<&tlmm 37 0>;
+		gpio-reset = <1>;
+		gpio-req-tbl-num = <0 1>;
+		gpio-req-tbl-flags = <1 0>;
+		gpio-req-tbl-label = "CAMIF_MCLK1",
+					"CAM_RESET2";
+		cci-master = <0>;
+		status = "ok";
+		clocks = <&gcc GCC_CAMSS_MCLK1_CLK>;
+		clock-names = "cam_clk";
+		clock-cntl-level = "turbo";
+		clock-rates = <24000000>;
+	};
 	qcom,cam-sensor3 {
 		cell-index = <3>;
 		compatible = "qcom,cam-sensor";
