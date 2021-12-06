@@ -221,11 +221,6 @@
 		status = "ok";
 	};
 
-	mot,cam-actuator {
-		compatible = "mot,actuator";
-		status = "ok";
-	};
-
 	led_flash_rear: qcom,camera-flash@0 {
 		cell-index = <0>;
 		reg = <0x0>;
