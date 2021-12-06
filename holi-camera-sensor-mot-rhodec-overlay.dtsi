@@ -295,7 +295,7 @@
 		};
 	};
 
-	cam_wide_avdd_en_default: cam_wide_avdd_en_default {
+	cam_wide_macro_avdd_en_default: cam_wide_macro_avdd_en_default {
 		mux {
 			pins = "gpio45";
 			function = "gpio";
@@ -309,19 +309,6 @@
 		};
 	};
 
-	cam_macro_avdd_en_default: cam_macro_avdd_en_default {
-		mux {
-			pins = "gpio45";
-			function = "gpio";
-		};
-
-		config {
-			pins = "gpio45";
-			bias-pull-up; /* PULL UP */
-			drive-strength = <2>; /* 2 MA */
-			output-high;
-		};
-	};
 };
 
 &L3A{
@@ -402,33 +389,20 @@
 		vin-supply = <&S6A>;
 	};
 
-	cam_wide_avdd: gpio-regulator@1{
+	cam_wide_macro_avdd: gpio-regulator@1{
 		compatible = "regulator-fixed";
 		reg = <0x01 0x01>;
-		regulator-name = "cam_wide_avdd";
+		regulator-name = "cam_wide_macro_avdd";
 		regulator-min-microvolt = <2800000>;
 		regulator-max-microvolt = <2800000>;
 		regulator-enable-ramp-delay = <233>;
 		enable-active-high;
 		gpio = <&tlmm 45 0>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&cam_wide_avdd_en_default>;
+		pinctrl-0 = <&cam_wide_macro_avdd_en_default>;
 		/*vin-supply = <&BOB>;*/
 	};
 
-	cam_macro_avdd: gpio-regulator@1{
-		compatible = "regulator-fixed";
-		reg = <0x01 0x01>;
-		regulator-name = "cam_macro_avdd";
-		regulator-min-microvolt = <2800000>;
-		regulator-max-microvolt = <2800000>;
-		regulator-enable-ramp-delay = <233>;
-		enable-active-high;
-		gpio = <&tlmm 45 0>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&cam_macro_avdd_en_default>;
-		/*vin-supply = <&BOB>;*/
-	};
 
 };
 
@@ -524,7 +498,7 @@
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
 		cam_vio-supply = <&L9A>;
-		cam_vana-supply = <&cam_macro_avdd>;
+		cam_vana-supply = <&cam_wide_macro_avdd>;
 		cam_clk-supply = <&gcc_camss_top_gdsc>;
 		regulator-names = "cam_vio","cam_vana", "cam_clk";
 		rgltr-cntrl-support;
@@ -559,7 +533,7 @@
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
 		cam_vio-supply = <&L9A>;
-		cam_vana-supply = <&cam_wide_avdd>;
+		cam_vana-supply = <&cam_wide_macro_avdd>;
 		cam_vdig-supply = <&cam_wide_dvdd>;
 		cam_clk-supply = <&gcc_camss_top_gdsc>;
 		regulator-names = "cam_vio", "cam_vana", "cam_vdig",
