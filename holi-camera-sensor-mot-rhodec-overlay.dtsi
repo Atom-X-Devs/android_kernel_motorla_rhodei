@@ -529,7 +529,7 @@
 		cell-index = <3>;
 		compatible = "qcom,eeprom";
 		cam_vio-supply = <&L9A>;
-		cam_vana-supply = <&cam_wide_avdd>;
+		cam_vana-supply = <&cam_wide_macro_avdd>;
 		cam_vdig-supply = <&cam_wide_dvdd>;
 		cam_clk-supply = <&gcc_camss_top_gdsc>;
 		regulator-names = "cam_vio", "cam_vana", "cam_vdig",
