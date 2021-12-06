@@ -407,6 +407,19 @@
 };
 
 &cam_cci0 {
+	eeprom_main: qcom,eeprom@0 {
+		cell-index = <0>;
+		reg = <0x0>;
+		compatible = "qcom,eeprom";
+		cam_vio-supply = <&L9A>;
+		regulator-names = "cam_vio";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000>;
+		rgltr-max-voltage = <1800000>;
+		rgltr-load-current = <120000>;
+		cci-master = <1>;
+		status = "ok";
+	};
 	qcom,cam-sensor0 {
 		cell-index = <0>;
 		compatible = "qcom,cam-sensor";
@@ -414,6 +427,7 @@
 		sensor-position-roll = <90>;
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
+		eeprom-src = <&eeprom_main>;
 		cam_vio-supply = <&L9A>;
 		cam_vana-supply = <&cam_rear_avdd>;
 		cam_vdig-supply = <&cam_rear_dvdd>;
