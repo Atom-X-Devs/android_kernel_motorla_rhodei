@@ -287,7 +287,7 @@
 		reg = <0x00 0x00>;
 		regulator-name = "cam_ois_ldo";
 		regulator-min-microvolt = <2800000>;
-		regulator-max-microvolt = <2805000>;
+		regulator-max-microvolt = <2800000>;
 		regulator-enable-ramp-delay = <233>;
 		enable-active-high;
 		gpio = <&tlmm 86 0>;
@@ -321,7 +321,7 @@
 		regulator-names = "cam_vio", "cam_vaf", "cam_v_custom1";
 		rgltr-cntrl-support;
 		rgltr-min-voltage = <1800000 2800000 2800000>;
-		rgltr-max-voltage = <1805000 2805000 2805000>;
+		rgltr-max-voltage = <1805000 2805000 2800000>;
 		rgltr-load-current = <120000 100000 100000>;
 		cci-master = <1>;
 		status = "ok";
@@ -428,7 +428,7 @@
 			"cam_clk";
 		rgltr-cntrl-support;
 		rgltr-min-voltage = <1800000 2800000 1200000 0>;
-		rgltr-max-voltage = <1805000 2805000 1205000 0>;
+		rgltr-max-voltage = <1805000 2805000 1200000 0>;
 		rgltr-load-current = <120000 80000 1200000 0>;
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
