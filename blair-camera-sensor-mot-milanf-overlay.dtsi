@@ -502,7 +502,7 @@
 				&cam_sensor_wide_reset_active>;
 		pinctrl-1 = <&cam_sensor_mclk3_suspend
 				&cam_sensor_wide_reset_suspend>;
-		gpios = <&tlmm 33 0>,
+		gpios = <&tlmm 32 0>,
 			<&tlmm 36 0>;
 		gpio-reset = <1>;
 		gpio-req-tbl-num = <0 1>;
@@ -557,7 +557,7 @@
 				&cam_sensor_wide_reset_active>;
 		pinctrl-1 = <&cam_sensor_mclk3_suspend
 				&cam_sensor_wide_reset_suspend>;
-		gpios = <&tlmm 33 0>,
+		gpios = <&tlmm 32 0>,
 			<&tlmm 36 0>;
 		gpio-reset = <1>;
 		gpio-req-tbl-num = <0 1>;
