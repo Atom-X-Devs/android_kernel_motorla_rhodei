@@ -308,7 +308,58 @@
 			output-high;
 		};
 	};
+	cam_flash_en_active: cam_flash_en_active {
+		mux {
+			pins = "gpio102";
+			function = "gpio";
+		};
 
+		config {
+			pins = "gpio102";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+	cam_flash_en_suspend: cam_flash_en_suspend {
+		mux {
+			pins = "gpio102";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio102";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+	cam_flash_torch_active: cam_flash_torch_active {
+		/* AFVDD */
+		mux {
+			pins = "gpio57";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio57";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+	cam_flash_torch_suspend: cam_flash_torch_suspend {
+		/* AFVDD */
+		mux {
+			pins = "gpio57";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio57";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
 };
 
 &L3A{
@@ -403,7 +454,31 @@
 		/*vin-supply = <&BOB>;*/
 	};
 
-
+	led_flash_rear: qcom,camera-flash@0 {
+		cell-index = <0>;
+		compatible = "qcom,camera-flash";
+		cci-master = <0>;
+		flash-type = <CAM_FLASH_TYPE_I2C>;
+		cam_vio-supply = <&L9A>;
+		regulator-names = "cam_vio";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000>;
+		rgltr-max-voltage = <1800000>;
+		rgltr-load-current = <120000>;
+		gpio-no-mux = <0>;
+		pinctrl-names = "cam_default","cam_suspend";
+		pinctrl-0 = <&cam_flash_en_active &cam_flash_torch_active>;
+		pinctrl-1 = <&cam_flash_en_suspend &cam_flash_torch_suspend>;
+		gpios = <&tlmm 102 0>,
+			<&tlmm 57 0>;
+		gpio-custom1 = <0>;
+		gpio-custom2 = <1>;
+		gpio-req-tbl-num = <0 1>;
+		gpio-req-tbl-flags = <0 0>;
+		gpio-req-tbl-label = "SENSOR_CUSTOM_GPIO1",
+				"SENSOR_CUSTOM_GPIO2";
+ 		status = "ok";
+	};
 };
 
 &cam_cci0 {
@@ -457,6 +532,7 @@
 		sensor-position-yaw = <180>;
 		actuator-src = <&actuator_main>;
 		eeprom-src = <&eeprom_main>;
+		led-flash-src = <&led_flash_rear>;
 		cam_vio-supply = <&L9A>;
 		cam_vana-supply = <&cam_rear_avdd>;
 		cam_vdig-supply = <&cam_rear_dvdd>;
