@@ -64,7 +64,7 @@
 		config {
 			pins = "gpio31";
 			bias-disable; /* No PULL */
-			drive-strength = <2>;
+			drive-strength = <4>;
 		};
 	};
 
@@ -77,7 +77,7 @@
 		config {
 			pins = "gpio31";
 			bias-pull-down; /* PULL DOWN */
-			drive-strength = <2>;
+			drive-strength = <4>;
 		};
 	};
 
