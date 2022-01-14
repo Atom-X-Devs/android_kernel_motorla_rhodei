@@ -548,21 +548,27 @@
 		pinctrl-names = "cam_default", "cam_suspend";
 		pinctrl-0 = <&cam_sensor_mclk0_active
 				&cam_sensor_main_reset_active
+				&cam_flash_en_active
 				&cam_rear_adj_en_default>;
 		pinctrl-1 = <&cam_sensor_mclk0_suspend
-				&cam_sensor_main_reset_suspend>;
+				&cam_sensor_main_reset_suspend
+				&cam_flash_en_suspend>;
 		gpios = <&tlmm 29 0>,
 			<&tlmm 35 0>,
+			<&tlmm 102 0>,
 			<&tlmm 47 0>;
 		gpio-reset = <1>;
-		gpio-custom1 = <2>;
-		gpio-req-tbl-num = <0 1 2>;
-		gpio-req-tbl-flags = <1 0 0>;
+		gpio-custom2 = <2>
+		gpio-custom1 = <3>;
+		gpio-req-tbl-num = <0 1 2 3>;
+		gpio-req-tbl-flags = <1 0 0 0>;
 		gpio-req-tbl-label = "CAMIF_MCLK0",
 					"CAM_RESET0",
+					"CAM_FLASH_EN",
 					"CAM_DVDD_SEL0";
 		cci-master = <1>;
 		status = "ok";
+		need-change-cci-master;
 		clocks = <&gcc GCC_CAMSS_MCLK0_CLK>;
 		clock-names = "cam_clk";
 		clock-cntl-level = "turbo";
