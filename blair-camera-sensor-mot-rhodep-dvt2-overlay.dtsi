@@ -34,6 +34,7 @@
 /delete-node/ &eeprom_wide;
 /delete-node/ &led_flash_wide;
 /delete-node/ &sensor_wide;
+/delete-node/ &cam_ois_vsync_irq_default;
 
 &tlmm {
 	cam_sensor_mclk0_active: cam_sensor_mclk0_active {
