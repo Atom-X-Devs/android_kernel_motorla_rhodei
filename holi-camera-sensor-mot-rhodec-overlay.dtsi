@@ -656,6 +656,7 @@
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
 		eeprom-src = <&eeprom_macro>;
+		led-flash-src = <&led_flash_rear>;
 		cam_vio-supply = <&L9A>;
 		cam_vana-supply = <&cam_wide_macro_avdd>;
 		cam_clk-supply = <&gcc_camss_top_gdsc>;
@@ -667,18 +668,24 @@
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
 		pinctrl-0 = <&cam_sensor_mclk1_active
-				&cam_sensor_macro_reset_active>;
+				&cam_sensor_macro_reset_active
+				&cam_flash_en_active>;
 		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				&cam_sensor_macro_reset_suspend>;
+				&cam_sensor_macro_reset_suspend
+				&cam_flash_en_suspend>;
 		gpios = <&tlmm 30 0>,
-			<&tlmm 37 0>;
+			<&tlmm 37 0>,
+			<&tlmm 102 0>;
 		gpio-reset = <1>;
-		gpio-req-tbl-num = <0 1>;
-		gpio-req-tbl-flags = <1 0>;
+		gpio-custom2 = <2>;
+		gpio-req-tbl-num = <0 1 2>;
+		gpio-req-tbl-flags = <1 0 0>;
 		gpio-req-tbl-label = "CAMIF_MCLK1",
-					"CAM_RESET2";
+					"CAM_RESET2",
+					"CAM_FLASH_EN";
 		cci-master = <0>;
 		status = "ok";
+		need-change-cci-master;
 		clocks = <&gcc GCC_CAMSS_MCLK1_CLK>;
 		clock-names = "cam_clk";
 		clock-cntl-level = "turbo";
