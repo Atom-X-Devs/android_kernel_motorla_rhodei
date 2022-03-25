@@ -1,0 +1,3 @@
+config INPUT_EGISTEC_FPS_NAVI_MMI
+	tristate "Focaltech FPS"
+	default n

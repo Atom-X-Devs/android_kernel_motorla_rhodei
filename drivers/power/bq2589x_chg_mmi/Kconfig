@@ -1,0 +1,3 @@
+config CHARGER_BQ2589X
+	tristate "BQ2589X Charger Driver"
+	default n

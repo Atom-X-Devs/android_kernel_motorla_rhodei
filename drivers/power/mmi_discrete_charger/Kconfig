@@ -1,0 +1,3 @@
+config MMI_DISCRETE_CHARGER
+	tristate "MMI Discrete Charger"
+	default n

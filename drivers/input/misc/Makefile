@@ -88,3 +88,6 @@ obj-$(CONFIG_INPUT_XEN_KBDDEV_FRONTEND)	+= xen-kbdfront.o
 obj-$(CONFIG_INPUT_YEALINK)		+= yealink.o
 obj-$(CONFIG_INPUT_IDEAPAD_SLIDEBAR)	+= ideapad_slidebar.o
 
+obj-$(CONFIG_EGIS_FPS)	+= rbs_fps_mmi/
+obj-$(CONFIG_FINGERPRINT_FPC_TEE)	+= fpc_fps_mmi/
+obj-$(CONFIG_INPUT_EGISTEC_FPS_NAVI_MMI)	+= focal_fps_mmi/

@@ -1,0 +1,3 @@
+config SM5602_FG_MMI
+	tristate "SM6502 Fuelgauge"
+	default n

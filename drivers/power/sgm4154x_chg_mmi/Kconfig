@@ -1,0 +1,3 @@
+config SGM4154X_CHARGER_MMI
+	tristate "SGM4154x Charger"
+	default n

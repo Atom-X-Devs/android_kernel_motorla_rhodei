@@ -1,0 +1,3 @@
+config LEDS_AW99703
+	tristate "Backlight driver for AW99703"
+	default n

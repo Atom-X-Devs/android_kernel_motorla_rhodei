@@ -1,0 +1,3 @@
+config TCPC_CLASS
+	tristate "TCPC Class"
+	default n

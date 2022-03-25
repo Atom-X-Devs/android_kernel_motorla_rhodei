@@ -1,0 +1,10 @@
+config MOTO_LEDS_BACKLIGHT
+	bool "Support for Motorola backlight LEDS"
+
+if MOTO_LEDS_BACKLIGHT
+
+source "drivers/backlight/aw99703/Kconfig"
+
+source "drivers/backlight/sm5350/Kconfig"
+
+endif

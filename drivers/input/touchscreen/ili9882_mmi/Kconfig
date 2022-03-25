@@ -1,0 +1,3 @@
+config TOUCHSCREEN_ILITEK_CHIPSET_MMI
+	tristate "Ilitek Touchscreen driver"
+	default n

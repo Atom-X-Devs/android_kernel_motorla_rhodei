@@ -1,0 +1,3 @@
+config ADAPTER_CLASS
+	tristate "PD Adapter Class"
+	default n

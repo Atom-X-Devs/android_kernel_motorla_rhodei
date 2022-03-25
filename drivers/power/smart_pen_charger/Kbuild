@@ -1,7 +1,7 @@
 # add -Wall to try to catch everything we can.
-EXTRA_CFLAGS += -Wall
-EXTRA_CFLAGS += -I$(ANDROID_BUILD_TOP)/motorola/kernel/modules/include
-EXTRA_CFLAGS += -I$(ANDROID_BUILD_TOP)/motorola/kernel/modules/drivers/power/qti_glink_charger
+ccflags-y += -Wall
+ccflags-y += -I$(ANDROID_BUILD_TOP)/motorola/kernel/modules/include
+ccflags-y += -I$(ANDROID_BUILD_TOP)/motorola/kernel/modules/drivers/power/qti_glink_charger
 
 obj-m += smart_pen_charger.o
 

@@ -1,0 +1,3 @@
+config CW2217B_FG
+	tristate "CW2217B FuelGauge"
+	default n
