@@ -149,3 +149,8 @@ x509.genkey
 
 # generated defconfigs
 arch/*/configs/vendor/*_defconfig
+
+# AtomX dir & builder scripts
+AtomX.sh
+out/
+work/
