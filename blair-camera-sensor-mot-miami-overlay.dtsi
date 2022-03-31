@@ -605,38 +605,38 @@
 	sensor_wide: qcom,cam-sensor@3 {
 		cell-index = <3>;
 		compatible = "qcom,cam-sensor";
-		csiphy-sd-index = <1>;
+		csiphy-sd-index = <0>;
 		sensor-position-roll = <90>;
 		sensor-position-pitch = <0>;
 		sensor-position-yaw = <180>;
-		led-flash-src = <&led_flash_wide>;
-		eeprom-src = <&eeprom_wide>;
+		//led-flash-src = <&led_flash_wide>;
+		//eeprom-src = <&eeprom_wide>;
 		cam_vio-supply = <&cam_pmic_ldo7>;
-		cam_vana-supply = <&cam_pmic_ldo5>;
+		cam_vana-supply = <&cam_pmic_ldo4>;
 		cam_vdig-supply = <&cam_pmic_ldo2>;
 		cam_clk-supply = <&gcc_camss_top_gdsc>;
 		regulator-names = "cam_vio", "cam_vana", "cam_vdig",
 			"cam_clk";
 		rgltr-cntrl-support;
-		rgltr-min-voltage = <1800000 2800000 1200000 0>;
-		rgltr-max-voltage = <1805000 2805000 1205000 0>;
-		rgltr-load-current = <120000 80000 1200000 0>;
+		rgltr-min-voltage = <1800000 2800000 1100000 0>;
+		rgltr-max-voltage = <1800000 2800000 1100000 0>;
+		rgltr-load-current = <3000 81000 36000 0>;
 		gpio-no-mux = <0>;
 		pinctrl-names = "cam_default", "cam_suspend";
-		pinctrl-0 = <&cam_sensor_mclk2_active
+		pinctrl-0 = <&cam_sensor_mclk3_active
 				&cam_sensor_wide_reset_active>;
-		pinctrl-1 = <&cam_sensor_mclk2_suspend
+		pinctrl-1 = <&cam_sensor_mclk3_suspend
 				&cam_sensor_wide_reset_suspend>;
-		gpios = <&tlmm 31 0>,
+		gpios = <&tlmm 32 0>,
 			<&tlmm 36 0>;
 		gpio-reset = <1>;
 		gpio-req-tbl-num = <0 1>;
 		gpio-req-tbl-flags = <1 0>;
-		gpio-req-tbl-label = "CAMIF_MCLK2",
+		gpio-req-tbl-label = "CAMIF_MCLK3",
 					"CAM_RW_RST";
 		cci-master = <0>;
 		status = "ok";
-		clocks = <&gcc GCC_CAMSS_MCLK2_CLK>;
+		clocks = <&gcc GCC_CAMSS_MCLK3_CLK>;
 		clock-names = "cam_clk";
 		clock-cntl-level = "turbo";
 		clock-rates = <24000000>;
