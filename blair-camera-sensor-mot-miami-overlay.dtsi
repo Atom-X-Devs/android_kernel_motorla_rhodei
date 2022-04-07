@@ -588,6 +588,20 @@
 
 	};
 
+	actuator_wide: qcom,actuator@3 {
+		cell-index = <3>;
+		compatible = "qcom,actuator";
+		cam_vio-supply = <&cam_pmic_ldo7>;
+		cam_vaf-supply = <&cam_pmic_ldo5>;
+		regulator-names = "cam_vio", "cam_vaf";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 2800000 >;
+		rgltr-max-voltage = <1800000 2800000 >;
+		rgltr-load-current = <3000 130000 >;
+		cci-master = <0>;
+		status = "ok";
+	};
+
 	sensor_wide: qcom,cam-sensor@3 {
 		cell-index = <3>;
 		compatible = "qcom,cam-sensor";
@@ -597,6 +611,7 @@
 		sensor-position-yaw = <180>;
 		led-flash-src = <&led_flash_wide>;
 		eeprom-src = <&eeprom_wide>;
+		actuator-src = <&actuator_wide>;
 		cam_vio-supply = <&cam_pmic_ldo7>;
 		cam_vana-supply = <&cam_pmic_ldo4>;
 		cam_vdig-supply = <&cam_pmic_ldo2>;
