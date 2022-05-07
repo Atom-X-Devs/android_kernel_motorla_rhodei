@@ -310,6 +310,11 @@
 	ois_main: qcom,ois@0 {
 		cell-index = <0>;
 		compatible = "qcom,ois";
+		interrupt-parent = <&tlmm>;
+		interrupts = <51 IRQ_TYPE_EDGE_RISING>;
+		vsync-irq-support;
+		pinctrl-names = "default";
+		pinctrl-0 = <&cam_ois_vsync_irq_default>;
 		cam_vio-supply = <&cam_pmic_ldo7>;
 		cam_vaf-supply = <&cam_pmic_ldo5>;
 		cam_v_custom1-supply = <&cam_pmic_ldo6>;
