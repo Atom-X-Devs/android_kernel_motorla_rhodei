@@ -1320,7 +1320,7 @@ static int aw882xx_set_spin(struct snd_kcontrol *kcontrol,
 {
 	int ret = -EINVAL;
 	uint32_t ctrl_value = 0;
-	struct aw_device *aw_dev;
+	struct aw_device *aw_dev __maybe_unused;
 	aw_snd_soc_codec_t *codec =
 		aw_componet_codec_ops.kcontrol_codec(kcontrol);
 	struct aw882xx *aw882xx =
@@ -1347,7 +1347,7 @@ static int aw882xx_set_spin(struct snd_kcontrol *kcontrol,
 static int aw882xx_get_spin(struct snd_kcontrol *kcontrol,
 	struct snd_ctl_elem_value *ucontrol)
 {
-	struct aw_device *aw_dev;
+	struct aw_device *aw_dev __maybe_unused;
 	aw_snd_soc_codec_t *codec =
 		aw_componet_codec_ops.kcontrol_codec(kcontrol);
 	struct aw882xx *aw882xx =
