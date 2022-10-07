@@ -6538,7 +6538,12 @@ static int msm_aux_codec_init(struct snd_soc_pcm_runtime *rtd)
 	}
 
 	if (!strncmp(component->driver->name, WCD937X_DRV_NAME, 13)) {
-		panic("Device is wcd937x, which is unsupported");
+		wcd937x_info_create_codec_entry(pdata->codec_root, component);
+		ret = snd_soc_add_component_controls(component,
+				msm_int_wcd937x_snd_controls,
+				ARRAY_SIZE(msm_int_wcd937x_snd_controls));
+		bolero_set_port_map(bolero_component,
+			ARRAY_SIZE(sm_port_map_wcd937x), sm_port_map_wcd937x);
 	} else if (!strncmp(component->driver->name, WCD938X_DRV_NAME, 13)) {
 		wcd938x_info_create_codec_entry(pdata->codec_root, component);
 
@@ -6577,7 +6582,7 @@ mbhc_cfg_cal:
 	if (is_wcd938x)
 		ret = wcd938x_mbhc_hs_detect(component, &wcd_mbhc_cfg);
 	else
-		panic("Device is wcd937x, which is unsupported");
+		ret = wcd937x_mbhc_hs_detect(component, &wcd_mbhc_cfg);
 
 	if (ret) {
 		dev_err(component->dev, "%s: mbhc hs detect failed, err:%d\n",
