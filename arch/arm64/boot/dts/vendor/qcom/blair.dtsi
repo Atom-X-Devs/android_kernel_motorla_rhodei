@@ -962,8 +962,8 @@
 		compatible = "qcom,msm-watchdog";
 		reg = <0xf410000 0x1000>;
 		reg-names = "wdt-base";
-		interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH>,
-					<0 1 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+					<GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,bark-time = <11000>;
 		qcom,pet-time = <9360>;
 		qcom,ipi-ping;
