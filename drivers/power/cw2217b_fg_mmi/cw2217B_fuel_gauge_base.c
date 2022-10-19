@@ -14,7 +14,7 @@
 #include <linux/sizes.h>
 #include <linux/regulator/consumer.h>
 
-#define CWFG_ENABLE_LOG 1 /* CHANGE Customer need to change this for enable/disable log */
+#define CWFG_ENABLE_LOG 0 /* CHANGE Customer need to change this for enable/disable log */
 
 #define CW_PROPERTIES cw_bat->bms_name
 
