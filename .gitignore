@@ -152,5 +152,6 @@ arch/*/configs/vendor/*_defconfig
 
 # AtomX dir & builder scripts
 AtomX*.sh
+upstream*.sh
 out/
 work/
