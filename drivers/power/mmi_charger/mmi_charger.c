@@ -45,7 +45,7 @@
 #define HEARTBEAT_WAKEUP_INTRVAL_NS 70000000000
 
 static bool debug_enabled;
-module_param(debug_enabled, bool, 0600);
+module_param(debug_enabled, bool, 0400);
 MODULE_PARM_DESC(debug_enabled, "Enable debug for mmi charger driver");
 
 static int factory_kill_disable;
