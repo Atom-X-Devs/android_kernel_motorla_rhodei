@@ -280,19 +280,19 @@ static int sm5350_get_dt_data(struct device *dev, struct sm5350_data *drvdata)
 		return -EINVAL;
 	}
 	drvdata->boost_ctl = (!rc ? tmp : 0);
-	pr_debug("%s : boost_ctl=0x%x\n",__func__, drvdata->boost_ctl);
+	//pr_debug("%s : boost_ctl=0x%x\n",__func__, drvdata->boost_ctl);
 
 	rc = of_property_read_u32(of_node, "map-mode", &tmp);
 	drvdata->map_mode= (!rc ? tmp : 1); /* 1: linear, 0: expo, linear as default*/
-	pr_debug("%s : map_mode=0x%x\n",__func__, drvdata->map_mode);
+	//pr_debug("%s : map_mode=0x%x\n",__func__, drvdata->map_mode);
 
 	if (of_property_read_u32(of_node, "current-align-type", &drvdata->led_current_align))
 		drvdata->led_current_align = ALIGN_NONE;
-	pr_debug("%s : led_current_align=0x%x\n",__func__, drvdata->led_current_align);
+	//pr_debug("%s : led_current_align=0x%x\n",__func__, drvdata->led_current_align);
 
 	rc = of_property_read_u32(of_node, "sm5350,default-brightness", &tmp);
 	drvdata->default_brightness= (!rc ? tmp : MAX_BRIGHTNESS);
-	pr_debug("%s : default_brightness=0x%x\n",__func__, drvdata->default_brightness);
+	//pr_debug("%s : default_brightness=0x%x\n",__func__, drvdata->default_brightness);
 
 	rc = of_property_read_u32(of_node, "pwm-cfg", &tmp);
 	if (rc) {
@@ -301,7 +301,7 @@ static int sm5350_get_dt_data(struct device *dev, struct sm5350_data *drvdata)
 		return -EINVAL;
 	}
 	drvdata->pwm_cfg = (!rc ? tmp : 0);
-	pr_debug("%s : pwm_cfg=0x%x\n",__func__, drvdata->pwm_cfg);
+	//pr_debug("%s : pwm_cfg=0x%x\n",__func__, drvdata->pwm_cfg);
 
 	rc = of_property_read_u32(of_node, "ctl-bank-en", &tmp);
 	if (rc) {
@@ -310,14 +310,14 @@ static int sm5350_get_dt_data(struct device *dev, struct sm5350_data *drvdata)
 		return -EINVAL;
 	}
 	drvdata->ctl_bank_en = (!rc ? tmp : 0);
-	pr_debug("%s : ctl_bank_en=0x%x\n",__func__, drvdata->ctl_bank_en);
+	//pr_debug("%s : ctl_bank_en=0x%x\n",__func__, drvdata->ctl_bank_en);
 
 	if (drvdata->ctl_bank_en & 0x01)
 		drvdata->bank_A = true;
 	if (drvdata->ctl_bank_en & 0x02)
 		drvdata->bank_B = true;
 
-	pr_debug("%s : bank_A=%d bank_B=%d\n",__func__, drvdata->bank_A, drvdata->bank_B);
+	//pr_debug("%s : bank_A=%d bank_B=%d\n",__func__, drvdata->bank_A, drvdata->bank_B);
 
 	rc = of_property_read_u32(of_node, "full-scale-current", &tmp);
 	if (rc) {
@@ -365,7 +365,7 @@ static int sm5350_get_dt_data(struct device *dev, struct sm5350_data *drvdata)
 
 	for (i=0; i < len; i++) {
 		drvdata->brt_code_table[i] = (u16) buf[i];
-		pr_debug("%s : buf=%d i=%d\n",__func__, buf[i], i);
+		//pr_debug("%s : buf=%d i=%d\n",__func__, buf[i], i);
 	}
 end:
 	kfree(buf);
