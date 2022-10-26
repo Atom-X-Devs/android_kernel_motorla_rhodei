@@ -17,6 +17,7 @@
 #include <linux/ipc_logging.h>
 #include <linux/debugfs.h>
 
+#ifdef DEBUG
 #define mmi_err(chg, fmt, ...)			\
 	do {						\
 		pr_err("%s: %s: " fmt, chg->name,	\
@@ -52,6 +53,12 @@
 		ipc_log_string(chg->ipc_log,		\
 			"D %s: %s: " fmt, chg->name, __func__, ##__VA_ARGS__); \
 	} while (0)
+#else
+#define mmi_info(chg, fmt, ...)	no_printk("%s: %s: " fmt, chg->name, __func__, ##__VA_ARGS__)
+#define mmi_dbg(chg, fmt, ...)	no_printk("%s: %s: " fmt, chg->name, __func__, ##__VA_ARGS__)
+#define mmi_warn(chg, fmt, ...)	no_printk("%s: %s: " fmt, chg->name, __func__, ##__VA_ARGS__)
+#define mmi_err(chg, fmt, ...)	no_printk("%s: %s: " fmt, chg->name, __func__, ##__VA_ARGS__)
+#endif
 
 #define MMI_LOG_PAGES (50)
 #define MMI_LOG_DIR "mmi_charger"
